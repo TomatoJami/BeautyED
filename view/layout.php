@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href='style.css' rel='stylesheet' type='text/css'>
-    <script src="js/script.js"></script>
   </head>
 <body>
     <header>
@@ -39,12 +38,18 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav d-flex align-items-center">
-                        <li class="nav-item">
-                            <button class="btn btn-outline-dark me-2" type="button">Login</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="btn btn-dark" type="button">Register</button>
-                        </li>
+                        <?php
+                        if (isset($_SESSION['sessionId'])) {;
+                            echo '<form action="logout" method="POST" style="display: inline;">
+                                    <button type="submit" class="btn btn-outline-dark me-2">Logout</button>
+                                 </form>';
+                        } else {
+                            // echo '<button class="btn btn-outline-dark me-2" onclick="window.location.href=\'login\'" type="button">Login</button>';
+                            echo '<a href="login.php" class="btn btn-outline-dark me-2">Login</a>';
+                            // echo '<button class="btn btn-dark" type="button">Register</button>';
+                            echo '<a href="register.php" class="btn btn btn-dark me-2">Register</a>';
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>
@@ -58,7 +63,7 @@
             background-image: url('images/salon.jpg');
             background-repeat: no-repeat;
             background-size: cover;
-            height: 850px;
+            height: 875px;
             margin-top: 0px;
             "
         >
@@ -179,7 +184,7 @@
         </div>
     </section>
 
-    <footer class="text-center text-lg-start text-white bg-dark">
+    <footer class="text-center text-lg-start text-white bg-dark position-relative">
         <div class="container p-3 pb-0">
             <section class="">
                 <div class="row">
@@ -191,6 +196,7 @@
                             A leading premium beauty salon
                             right from the heart of Paris!
                         </p>
+                        <a href="" style="color: white;">Website</a>
                     </div>
 
                     <hr class="w-100 clearfix d-md-none" />
