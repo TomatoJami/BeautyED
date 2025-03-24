@@ -6,6 +6,10 @@ class Controller {
         include_once 'view/start.php';
     }
 
+    // public static function formLoginSite() {
+    //     include_once('view/formLogin.php');
+    // }
+
     public static function loginAction() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $logIn = modelLogin::userAuthentication();
@@ -18,6 +22,20 @@ class Controller {
             unset($_SESSION['errorString']);
         }
         include_once('view/formLogin.php');
+    }
+
+    public static function registerAction() {
+        if (isset($_POST['save'])) {
+            $test = modelRegister::userRegister();
+    
+            if ($test == true) {
+                $successMessage = 'Регистрация успешна!';
+            } else {
+                $errorMessage = 'Ошибка при регистрации или email уже занят';
+            }
+        }
+
+        include_once('view/formRegister.php');
     }
 
     public static function logoutAction() {

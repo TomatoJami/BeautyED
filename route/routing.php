@@ -11,6 +11,10 @@
         $response = Controller::loginAction();
     }
 
+    elseif($path == 'register.php' OR $path == 'register') {
+        $response = Controller::registerAction();
+    }
+
     elseif($path == 'logout.php' OR $path == 'logout') {
         $response = Controller::logoutAction();
     }
