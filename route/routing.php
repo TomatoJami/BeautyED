@@ -19,6 +19,18 @@
         $response = Controller::logoutAction();
     }
 
+    elseif($path == 'account.php' OR $path == 'account') {
+        $response = Controller::accountAction();
+    }
+
+    elseif($path == 'accountEditForm.php' OR $path == 'accountEditForm') {
+        $response = Controller::accountEditForm();
+    }
+
+    elseif($path == 'accountDeleteForm.php' OR $path == 'accountDeleteForm') {
+        $response = Controller::accountDeleteForm();
+    }
+
     else {
         $response = Controller::error404();
     }

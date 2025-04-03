@@ -1,34 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>register</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Account</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link href='login.css' rel='stylesheet' type='text/css'>
+    <link href='account.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
-    <div class="back-button d-md-flex ms-3">
-        <a href="./"><img style="width: 40px; height: 40px;" src="images/back.png" alt=""></a>
+    <div class="d-md-flex ms-3">
+        <a href="account.php"><img style="width: 40px; height: 40px; object-fit: contain;" src="images/back.png" alt=""></a>
     </div>
-    <div class="container">
-        <form class="form-signin" action="register.php" method="POST">
-            <h3 class="form-signin-heading">Insert your data</h3>
-            <input type="text" name="name" class="form-control" placeholder="Name" required>
-            <input type="email" name="email" class="form-control" placeholder="Email" required>
-            <input type="text" name="phone" class="form-control" placeholder="Phone" required>
-            <input type="password" name="password" class="form-control" placeholder="Password" required>
-            <button class="btn btn-lg btn-dark w-100" type="submit" name="save">Register</button>
-            <?php
-                if (isset($errorMessage)) {
-                    echo '<span style="color: red;">' . $errorMessage . '</span>';
-                }
-                if (isset($successMessage)) {
-                    echo '<span style="color: green;">' . $successMessage . '</span>';
-                    echo '<p style="padding-top: 10px;"><a href="login.php" style="text-decoration: none;">Login</a></p>';
-                }
-            ?>
+    <div class="container-sm p-5 bg-white rounded-3 container-account" style="width: 50%;">
+        <h1 class="text-center">Account delete</h1>
+
+        <form method="POST" action="">
+            <input type="text" name="name" class="form-control mb-3" readonly required value="<?php echo isset($_SESSION['name']) ? $_SESSION['name'] : ''; ?>">
+            <input type="text" name="email" class="form-control mb-3" readonly required value="<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>">
+            <input type="text" name="phone" class="form-control mb-3" readonly required value="<?php echo isset($_SESSION['phone']) ? $_SESSION['phone'] : ''; ?>">
+            <button type="submit" class="btn btn-danger" name="save">Delete</button>
         </form>
+
     </div>
 
     <footer class="text-center text-lg-start text-white bg-dark fixed-bottom">
@@ -66,6 +58,7 @@
             </div>
         </section> 
     </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>

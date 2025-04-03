@@ -8,7 +8,10 @@
     <link href='login.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<div class="container">
+    <div class="back-button d-md-flex ms-3">
+        <a href="./"><img style="width: 40px; height: 40px;" src="images/back.png" alt=""></a>
+    </div>
+    <div class="container">
         <form class="form-signin" action="login.php" method="POST">
             <h3 class="form-signin-heading">Insert your data</h3>
             <input type="text" name="email" class="form-control" placeholder="Email" autofocus>

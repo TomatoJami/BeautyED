@@ -39,7 +39,9 @@
                     </ul>
                     <ul class="navbar-nav d-flex align-items-center">
                         <?php
-                        if (isset($_SESSION['sessionId'])) {;
+                        if (isset($_SESSION['sessionId'])) {
+                            echo '<a class="me-2" href="account.php"><img style="width: 40px; height: 40px; border-radius: 50%;" src="images/avatar.jpg" class="profile-image"></a>';
+                            // echo '<button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-ok"></i></button>';
                             echo '<form action="logout" method="POST" style="display: inline;">
                                     <button type="submit" class="btn btn-outline-dark me-2">Logout</button>
                                  </form>';

@@ -6,10 +6,6 @@ class Controller {
         include_once 'view/start.php';
     }
 
-    // public static function formLoginSite() {
-    //     include_once('view/formLogin.php');
-    // }
-
     public static function loginAction() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $logIn = modelLogin::userAuthentication();
@@ -29,9 +25,9 @@ class Controller {
             $test = modelRegister::userRegister();
     
             if ($test == true) {
-                $successMessage = 'Регистрация успешна!';
+                $successMessage = 'Registration successful!';
             } else {
-                $errorMessage = 'Ошибка при регистрации или email уже занят';
+                $errorMessage = 'Registration error or email is already taken';
             }
         }
 
@@ -46,4 +42,27 @@ class Controller {
     public static function error404() {
         include_once 'view/error404.php';
     }
+
+    public static function accountAction() {
+        include_once 'view/account.php';
+    }
+
+    public static function accountEditForm() {
+        $result = modelAccount::editAccount();
+
+        if ($result) {
+            $successMessage = 'Data changed!';
+        }
+
+        include_once 'view/accountEditForm.php';
+    }   
+
+    public static function accountDeleteForm() {
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
+            $result = modelAccount::deleteAccount();
+        }
+
+        include_once 'view/accountDeleteForm.php';
+    } 
 }
