@@ -23,14 +23,12 @@ class Controller {
     public static function registerAction() {
         if (isset($_POST['save'])) {
             $test = modelRegister::userRegister();
-    
             if ($test == true) {
                 $successMessage = 'Registration successful!';
             } else {
                 $errorMessage = 'Registration error or email is already taken';
             }
         }
-
         include_once('view/formRegister.php');
     }
 
@@ -44,25 +42,30 @@ class Controller {
     }
 
     public static function accountAction() {
+        $arr = modelAppointments::getAllAppointmentsForUser();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_appointment'])) {
+            if (isset($_POST['appointment_id'])) {
+                $id = $_POST['appointment_id'];
+                $result = modelAppointments::deleteAppointment($id);
+                header('Location: account.php');
+                exit;
+            }
+        }
         include_once 'view/account.php';
     }
 
     public static function accountEditForm() {
         $result = modelAccount::editAccount();
-
         if ($result) {
             $successMessage = 'Data changed!';
         }
-
         include_once 'view/accountEditForm.php';
     }   
 
-    public static function accountDeleteForm() {
-        
+    public static function accountDeleteForm() { 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
             $result = modelAccount::deleteAccount();
         }
-
         include_once 'view/accountDeleteForm.php';
     } 
 }

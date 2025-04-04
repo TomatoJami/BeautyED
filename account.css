@@ -1,8 +1,5 @@
-body {
-    height: 100vh;
-}
-
 .container-account {
-    border: 2px solid black; /* Устанавливаем бордер */
-    border-radius: 5px; /* Добавляем скругление */
+    border: 2px solid black;
+    border-radius: 5px;
+    flex: 1;
 }

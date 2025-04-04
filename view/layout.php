@@ -9,7 +9,6 @@
   </head>
 <body>
     <header>
-        <!-- Navbar -->
         <nav class="navbar navbar-expand-lg bg-body fixed-top">
             <div class="container-fluid">
                 <button
@@ -41,14 +40,11 @@
                         <?php
                         if (isset($_SESSION['sessionId'])) {
                             echo '<a class="me-2" href="account.php"><img style="width: 40px; height: 40px; border-radius: 50%;" src="images/avatar.jpg" class="profile-image"></a>';
-                            // echo '<button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-ok"></i></button>';
                             echo '<form action="logout" method="POST" style="display: inline;">
                                     <button type="submit" class="btn btn-outline-dark me-2">Logout</button>
                                  </form>';
                         } else {
-                            // echo '<button class="btn btn-outline-dark me-2" onclick="window.location.href=\'login\'" type="button">Login</button>';
                             echo '<a href="login.php" class="btn btn-outline-dark me-2">Login</a>';
-                            // echo '<button class="btn btn-dark" type="button">Register</button>';
                             echo '<a href="register.php" class="btn btn btn-dark me-2">Register</a>';
                         }
                         ?>
@@ -65,7 +61,7 @@
             background-image: url('images/salon.jpg');
             background-repeat: no-repeat;
             background-size: cover;
-            height: 875px;
+            height: 963px;
             margin-top: 0px;
             "
         >
