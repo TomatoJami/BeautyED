@@ -26,7 +26,13 @@
             echo '<div class="alert alert-success mt-3">';
             echo '<span style="color: green;">' . $successMessage . '</span>';
             echo '</div>';
-        }
+        } 
+
+        if (isset($errorMessage)) {
+            echo '<div class="alert alert-danger mt-3">';
+            echo '<span style="color: red;">' . $errorMessage . '</span>';
+            echo '</div>';
+        } 
         ?>
 
     </div>

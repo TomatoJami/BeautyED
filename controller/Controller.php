@@ -56,8 +56,12 @@ class Controller {
 
     public static function accountEditForm() {
         $result = modelAccount::editAccount();
-        if ($result) {
-            $successMessage = 'Data changed!';
+        if (isset($_POST['save'])) {
+            if ($result['result']) {
+                $successMessage = 'Data changed!';
+            } elseif (!empty($result['errorMessage'])) {
+                $errorMessage = $result['errorMessage'];
+            }
         }
         include_once 'view/accountEditForm.php';
     }   
