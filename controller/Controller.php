@@ -3,6 +3,14 @@
 class Controller {
 
     public static function StartSite() {
+        $arrTypes = modelServiceType::getAllServiceType();
+        $arrTypeServices = [];
+
+        foreach ($arrTypes as $type) {
+            $id = $type['id'];
+            $arrServices[$id] = modelServices::getAllServicesByType($id);
+        }
+    
         include_once 'view/start.php';
     }
 

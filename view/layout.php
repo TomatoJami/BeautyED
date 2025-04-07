@@ -25,7 +25,7 @@
                 <div class="collapse navbar-collapse" id="mynavbar">
                     <ul class="navbar-nav me-auto d-flex align-items-center">
                         <li class="nav-item">
-                            <h3>BeautyED</h3>
+                            <h3><a class="text-black text-decoration-none" href="">BeautyED</a></h3>
                         </li>
                     </ul>
                     <ul class="navbar-nav me-auto d-flex align-items-center">
@@ -55,27 +55,20 @@
         <!-- Navbar -->
 
         <!-- Background image -->
-        <div
-            class="p-5 text-center bg-image"
+        <div class="p-5 text-center bg-image text-white"
             style="
-            background-image: url('images/salon.jpg');
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 963px;
-            margin-top: 0px;
-            "
-        >
-            <div class="mask" style="background-color: rgba(0, 0, 0, 0.6); position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                            url('images/salon.jpg') no-repeat center center;
+                background-size: cover;
+                height: 100vh;
+            ">
             <div class="d-flex justify-content-center align-items-center h-100">
-                <div class="text-white">
-                <h1 class="mb-3">BeautyED</h1>
-                <h3 class="mb-3">Narva</h3>
-                <h4 class="mb-3">A premium flagship beauty salon from the heart of Paris!</h4>
-                <a data-mdb-ripple-init class="btn btn-outline-light btn-lg" href="#!" role="button"
-                >Book your time</a
-                >
+                <div>
+                    <h1 class="mb-3">BeautyED</h1>
+                    <h3 class="mb-3">Narva</h3>
+                    <h4 class="mb-3">A premium flagship beauty salon from the heart of Paris!</h4>
+                    <a class="btn btn-outline-light btn-lg" href="#!" role="button">Book your time</a>
                 </div>
-            </div>
             </div>
         </div>
     </header>
@@ -101,45 +94,65 @@
         <h2 class="mb-3 text-center">SALON SERVICES:</h2>
         
         <div class="d-flex justify-content-between">
-        <!-- Парикмахерские услуги -->
-        <div class="dropdown">
-            <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Hairdressing services
-            </button>
-            <div class="dropdown-menu">
-                <span class="dropdown-item-text">Haircut 25.00</span>
-                <span class="dropdown-item-text">Hair lightening 60.00</span>
-                <span class="dropdown-item-text">Laying 15.00</span>
-                <span class="dropdown-item-text">Coloring 70.00</span>
-            </div>
+            <?php foreach ($arrTypes as $type) { ?>
+                <div class="dropdown">
+                    <?php
+                        echo '<button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">'.$type['type'].'</button>';
+                    ?>
+                    <ul class="dropdown-menu">
+                        <?php 
+                            $services = $arrServices[$type['id']] ?? [];
+                            if (!empty($services)) {
+                                foreach ($services as $service) {
+                                    echo '<li><span class="dropdown-item-text">'.$service['name'].': '.$service['price'].'€</span></li>';
+                                }
+                            }
+                            else {
+                                echo '<li><span class="dropdown-item-text text-muted">Services are missing</span></li>';
+                            }
+                        ?>
+                    </ul>
+                </div>
+            <?php } ?>
         </div>
+        
+        <!-- <div class="d-flex justify-content-between">
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Hairdressing services
+                </button>
+                <div class="dropdown-menu">
+                    <span class="dropdown-item-text">Haircut 25.00</span>
+                    <span class="dropdown-item-text">Hair lightening 60.00</span>
+                    <span class="dropdown-item-text">Laying 15.00</span>
+                    <span class="dropdown-item-text">Coloring 70.00</span>
+                </div>
+            </div>
 
-        <!-- Маникюр -->
-        <div class="dropdown">
-            <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Manicure
-            </button>
-            <div class="dropdown-menu">
-                <span class="dropdown-item-text">Classic manicure 20.00</span>
-                <span class="dropdown-item-text">Gel polish 30.00</span>
-                <span class="dropdown-item-text">Nail extensions 50.00</span>
-                <span class="dropdown-item-text">SPA manicure 40.00</span>
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Manicure
+                </button>
+                <div class="dropdown-menu">
+                    <span class="dropdown-item-text">Classic manicure 20.00</span>
+                    <span class="dropdown-item-text">Gel polish 30.00</span>
+                    <span class="dropdown-item-text">Nail extensions 50.00</span>
+                    <span class="dropdown-item-text">SPA manicure 40.00</span>
+                </div>
             </div>
-        </div>
 
-        <!-- Брови и ресницы -->
-        <div class="dropdown">
-            <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Eyebrows and eyelashes
-            </button>
-            <div class="dropdown-menu">
-                <span class="dropdown-item-text">Eyebrow shaping 15.00</span>
-                <span class="dropdown-item-text">Eyelash extensions 50.00</span>
-                <span class="dropdown-item-text">Brow tinting 20.00</span>
-                <span class="dropdown-item-text">Lash lift 30.00</span>
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Eyebrows and eyelashes
+                </button>
+                <div class="dropdown-menu">
+                    <span class="dropdown-item-text">Eyebrow shaping 15.00</span>
+                    <span class="dropdown-item-text">Eyelash extensions 50.00</span>
+                    <span class="dropdown-item-text">Brow tinting 20.00</span>
+                    <span class="dropdown-item-text">Lash lift 30.00</span>
+                </div>
             </div>
-        </div>
-    </div>
+        </div> -->
     </section>
 
     <section class="container container-team text-center my-5">
