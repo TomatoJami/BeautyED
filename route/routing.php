@@ -31,6 +31,14 @@
         $response = Controller::accountDeleteForm();
     }
 
+    elseif($path == 'appointment.php' OR $path == 'appointment') {
+        $response = Controller::appointmentForm();
+    }
+    
+        elseif($path == 'appointmentSuccess.php' OR $path == 'appointmentSuccess') {
+            $response = Controller::appointmentSuccess();
+        }
+
     else {
         $response = Controller::error404();
     }

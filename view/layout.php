@@ -67,7 +67,13 @@
                     <h1 class="mb-3">BeautyED</h1>
                     <h3 class="mb-3">Narva</h3>
                     <h4 class="mb-3">A premium flagship beauty salon from the heart of Paris!</h4>
-                    <a class="btn btn-outline-light btn-lg" href="#!" role="button">Book your time</a>
+                    <?php
+                    if (isset($_SESSION['sessionId'])) {
+                        echo '<a class="btn btn-outline-light btn-lg" href="appointment.php" role="button">Book your time</a>';
+                    } else {
+                        echo '<a class="btn btn-outline-light btn-lg" href="login.php" role="button">Book your time</a>';
+                    }
+                    ?>
                 </div>
             </div>
         </div>

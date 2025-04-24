@@ -32,7 +32,7 @@
                     echo '<div class="appointment-item d-flex justify-content-between align-items-center mb-3   ">';
                     echo '<div class="appointment-details">';
                     echo '<p><strong>Service:</strong> '.$value['service_name'].'</p>';
-                    echo '<p><strong>Status:</strong> '.$value['status_name'].'</p>';
+                    echo '<p><strong>Master:</strong> '.$value['master_name'].'</p>';
                     echo '<p><strong>Date & Time:</strong> '.$value['dateTime'].'</p>';
                     echo '</div>';
                     echo '<form method="POST" action="account.php">';

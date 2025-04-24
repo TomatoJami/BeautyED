@@ -7,5 +7,12 @@ class modelServices{
         $arr = $db->getAll($query);
         return $arr;
     }
+
+    public static function getAllServices() {
+        $query = "SELECT id as service_id, name, price FROM services";
+        $db = new Database();
+        $arr = $db->getAll($query);
+        return $arr;
+    }
 }
 ?>

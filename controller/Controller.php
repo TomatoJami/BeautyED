@@ -80,4 +80,17 @@ class Controller {
         }
         include_once 'view/accountDeleteForm.php';
     } 
+
+    public static function appointmentForm() {
+        $arrMasters = modelUsers::getAllMasters();
+        $arrServices = modelServices::getAllServices();
+        if (isset($_POST['save'])) {
+            $test = modelAppointments::addAppointment();
+        }
+        include_once 'view/appointment.php';
+    }
+
+    public static function appointmentSuccess() {
+        include_once 'view/appointmentSuccess.php';
+    }
 }
