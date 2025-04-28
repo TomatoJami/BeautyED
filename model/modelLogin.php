@@ -28,6 +28,7 @@ class modelLogin{
                             $_SESSION['name'] = $item['name'];
                             $_SESSION['email'] = $item['email'];
                             $_SESSION['phone'] = $item['phone'];
+                            $_SESSION['role'] = $item['role'];
 
                             $logIn=true;
                             header("Location: /BeautyED");
@@ -47,6 +48,7 @@ class modelLogin{
         unset($_SESSION['name']);
         unset($_SESSION['email']);
         unset($_SESSION['phone']);
+        unset($_SESSION['role']);
         session_destroy();
         header("Location: /BeautyED");
         exit();

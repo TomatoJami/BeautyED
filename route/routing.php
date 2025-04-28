@@ -2,6 +2,7 @@
     $host = explode('?', $_SERVER['REQUEST_URI'])[0];
     $num = substr_count($host, '/');
     $path = explode('/', $host)[$num];
+    $path = str_replace('.php', '', $path);
 
     if ($path == '' OR $path == 'index' OR $path == 'index.php') {
         $response = Controller::StartSite();
