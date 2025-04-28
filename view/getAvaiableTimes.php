@@ -1,0 +1,3 @@
+<?php
+modelAppointments::getAvaiableTimes();
+?>  

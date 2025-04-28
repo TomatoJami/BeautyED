@@ -13,7 +13,6 @@
 
   .success-message {
     font-size: 1.5rem;
-    color: #28a745;
     margin-bottom: 20px;
   }
 

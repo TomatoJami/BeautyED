@@ -36,16 +36,7 @@
             <h3 class="mt-4 text-center">Select date and time</h3>
             <input type="date" name="appointment_date" id="date-picker" required class="form-control mb-3" style="width: 80%; margin: 0 auto;">
             <select name="appointment_time" id="appointment_time" required class="form-control mb-3" style="width: 80%; margin: 0 auto;">
-                <?php
-                $start_hour = 10;
-                $end_hour = 19;
-                for ($hour = $start_hour; $hour <= $end_hour; $hour++) {
-                    for ($minute = 0; $minute < 60; $minute += 30) {
-                        $time = sprintf("%02d:%02d", $hour, $minute);
-                        echo "<option value=\"$time\">$time</option>";
-                    }
-                }
-                ?>
+                <option value="">Select time</option>
             </select>
 
             <h3 class="mt-4 text-center">Select service</h3>
@@ -118,12 +109,24 @@ document.addEventListener("DOMContentLoaded", function () {
     const masterButtons = document.querySelectorAll("[data-master-id]");
     const serviceButtons = document.querySelectorAll("[data-service-id]");
     const form = document.getElementById("appointment-form");
+    const datePicker = document.getElementById("date-picker");
+    const appointmentTimeSelect = document.getElementById("appointment_time");
+
+    const today = new Date().toISOString().split('T')[0];
+    datePicker.min = today;
 
     masterButtons.forEach((button) => {
         button.addEventListener("click", function () {
-        masterButtons.forEach((btn) => btn.classList.remove("active"));
-        this.classList.add("active");
-        document.getElementById("master_id").value = this.dataset.masterId;
+            masterButtons.forEach((btn) => btn.classList.remove("active"));
+            this.classList.add("active");
+
+            document.getElementById("master_id").value = this.dataset.masterId;
+
+            appointmentTimeSelect.innerHTML = '<option value="">Select time</option>';
+
+            if (datePicker.value) {
+                loadAvailableTimes();
+            }
         });
     });
 
@@ -131,23 +134,56 @@ document.addEventListener("DOMContentLoaded", function () {
         button.addEventListener("click", function () {
             serviceButtons.forEach((btn) => btn.classList.remove("active"));
             this.classList.add("active");
+
             document.getElementById("service_id").value = this.dataset.serviceId;
         });
     });
 
+    datePicker.addEventListener("change", function () {
+        appointmentTimeSelect.innerHTML = '<option value="">Select time</option>';
+        loadAvailableTimes();
+    });
+
+    function loadAvailableTimes() {
+        const masterId = document.getElementById("master_id").value;
+        const date = datePicker.value;
+
+        if (!masterId || !date) return;
+
+        fetch(`getAvaiableTimes.php?master_id=${masterId}&date=${date}`)
+            .then(response => response.json())
+            .then(times => {
+                appointmentTimeSelect.innerHTML = '';
+                if (times.length === 0) {
+                    appointmentTimeSelect.innerHTML = '<option>No available times</option>';
+                    return;
+                }
+                times.forEach(time => {
+                    const option = document.createElement('option');
+                    option.value = time;
+                    option.textContent = time;
+                    appointmentTimeSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching available times:', error);
+            });
+    }
+
     form.addEventListener("submit", function (event) {
-        const date = document.getElementById("date-picker").value;
-        const time = document.getElementById("appointment_time").value;
+        const date = datePicker.value;
+        const time = appointmentTimeSelect.value;
         const masterId = document.getElementById("master_id").value;
         const serviceId = document.getElementById("service_id").value;
 
         if (!masterId || !serviceId || !date || !time) {
-        event.preventDefault();
-        alert("Please select a master, a service, date, and time.");
-        return;
+            event.preventDefault();
+            alert("Please select a master, a service, date, and time.");
         }
     });
 });
+
 </script>
+
 </body>
 </html>

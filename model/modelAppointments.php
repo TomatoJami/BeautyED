@@ -23,6 +23,42 @@ class modelAppointments{
         return $result;
     }
 
+    public static function getAvaiableTimes() {
+        if (isset($_GET['master_id']) && isset($_GET['date'])) {
+            $master_id = intval($_GET['master_id']);
+            $date = $_GET['date'];
+    
+            $db = new Database();
+            $db->connect();
+    
+            $sql = "SELECT DATE_FORMAT(dateTime, '%H:%i') as time FROM appointments WHERE master_id = $master_id AND DATE(dateTime) = '$date'";
+            $bookedTimes = $db->getAll($sql);
+    
+            $booked = array_map(function($row) {
+                return $row['time'];
+            }, $bookedTimes);
+    
+            $booked = array_unique($booked);
+    
+            $start_hour = 10;
+            $end_hour = 19;
+            $allTimes = [];
+    
+            for ($hour = $start_hour; $hour <= $end_hour; $hour++) {
+                foreach ([0, 30] as $minute) {
+                    $time = sprintf("%02d:%02d", $hour, $minute);
+                    $allTimes[] = $time;
+                }
+            }
+    
+            $availableTimes = array_diff($allTimes, $booked);
+    
+            echo json_encode(array_values($availableTimes));
+            exit();
+        }
+    }
+    
+
     public static function addAppointment() {
         $test = false;
         if (isset($_POST['save'])) {
@@ -35,18 +71,32 @@ class modelAppointments{
                 $time = $_POST['appointment_time'];
                 $dateTime = $date . ' ' . $time . ':00'; 
     
+                $currentDateTime = date('Y-m-d H:i:s');
+                if ($dateTime < $currentDateTime) {
+                    echo "<script>alert('The selected appointment time is in the past. Please choose a future time.'); window.history.back();</script>";
+                    exit();
+                }
+    
                 $db = new Database();
                 $db->connect();
     
+                $sqlCheck = "SELECT COUNT(*) AS cnt FROM `appointments` WHERE `master_id` = '$master_id' AND `dateTime` = '$dateTime'";
+                $result = $db->getOne($sqlCheck);
+    
+                if ($result['cnt'] > 0) {
+                    echo "<script>alert('Master is already booked for this time. Please choose another time.'); window.history.back();</script>";
+                    exit();
+                }
+    
                 $sql = "INSERT INTO `appointments` (`user_id`, `service_id`, `master_id`, `dateTime`) 
                         VALUES ('$userId', '$service_id', '$master_id', '$dateTime')";
-
+    
                 if ($db->executeRun($sql)) {
                     $test = true;
                     header("Location: appointmentSuccess.php");
                     exit();
                 } else {
-                    echo "Ошибка выполнения запроса.";
+                    echo "Error";
                 }
             }
         }

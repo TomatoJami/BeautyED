@@ -93,4 +93,8 @@ class Controller {
     public static function appointmentSuccess() {
         include_once 'view/appointmentSuccess.php';
     }
+
+    public static function avaiableTimes() {
+        include_once 'view/getAvaiableTimes.php';
+    }
 }

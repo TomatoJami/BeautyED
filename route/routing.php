@@ -38,6 +38,10 @@
         elseif($path == 'appointmentSuccess.php' OR $path == 'appointmentSuccess') {
             $response = Controller::appointmentSuccess();
         }
+    
+    elseif($path == 'getAvaiableTimes.php' OR $path == 'getAvaiableTimes') {
+        $response = Controller::avaiableTimes();
+    }
 
     else {
         $response = Controller::error404();
