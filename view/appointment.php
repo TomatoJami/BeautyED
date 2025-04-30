@@ -17,53 +17,53 @@
             <form method="POST" action='' id="appointment-form">
                 <h3 class="mt-4 text-center">Choose specialist</h3>
                 <div id="masters">
-                <?php 
-                if (empty($arrMasters)) {
-                    echo '<p class="text-center">No specialist found</p>';
-                } else {
-                    foreach($arrMasters as $value) {
-                        echo '<div class="appointment-item d-flex justify-content-between align-items-center mb-3">';
-                        echo '<div class="appointment-details">';
-                        echo '<p><strong>Master:</strong> '.$value['master_name'].'</p>';
-                        echo '</div>';
-                        echo '<button type="button" class="circle-btn btn-time" data-master-id="' . $value['master_id'] . '"></button>';
-                        echo '</div>';
+                    <?php 
+                    if (empty($arrMasters)) {
+                        echo '<p class="text-center">No specialist found</p>';
+                    } else {
+                        foreach($arrMasters as $value) {
+                            echo '<div class="appointment-item d-flex justify-content-between align-items-center mb-3">';
+                            echo '<div class="appointment-details">';
+                            echo '<p><strong>Master:</strong> '.$value['master_name'].'</p>';
+                            echo '</div>';
+                            echo '<button type="button" class="circle-btn btn-time" data-master-id="' . $value['master_id'] . '"></button>';
+                            echo '</div>';
+                        }
                     }
-                }
-                ?>
-            </div>
+                    ?>
+                </div>
 
-            <h3 class="mt-4 text-center">Select date and time</h3>
-            <input type="date" name="appointment_date" id="date-picker" required class="form-control mb-3" style="width: 80%; margin: 0 auto;">
-            <select name="appointment_time" id="appointment_time" required class="form-control mb-3" style="width: 80%; margin: 0 auto;">
-                <option value="">Select time</option>
-            </select>
+                <h3 class="mt-4 text-center">Select date and time</h3>
+                <input type="date" name="appointment_date" id="date-picker" required class="form-control mb-3" style="width: 80%; margin: 0 auto;">
+                <select name="appointment_time" id="appointment_time" required class="form-control mb-3" style="width: 80%; margin: 0 auto;">
+                    <option value="">Select time</option>
+                </select>
 
-            <h3 class="mt-4 text-center">Select service</h3>
-            <div id="services">
-                <?php 
-                if (empty($arrServices)) {
-                    echo '<p class="text-center">No services found</p>';
-                } else {
-                    foreach($arrServices as $value) {
-                        echo '<div class="appointment-item d-flex justify-content-between align-items-center mb-3">';
-                        echo '<div class="appointment-details">';
-                        echo '<p><strong>Service:</strong> '.$value['name'].'</p>';
-                        echo '<p><strong>Price:</strong> '.$value['price'].'</p>';
-                        echo '</div>';
-                        echo '<button type="button" class="circle-btn btn-time" data-service-id="' . $value['service_id'] . '"></button>';
-                        echo '</div>';
+                <h3 class="mt-4 text-center">Select service</h3>
+                <div id="services">
+                    <?php 
+                    if (empty($arrServices)) {
+                        echo '<p class="text-center">No services found</p>';
+                    } else {
+                        foreach($arrServices as $value) {
+                            echo '<div class="appointment-item d-flex justify-content-between align-items-center mb-3">';
+                            echo '<div class="appointment-details">';
+                            echo '<p><strong>Service:</strong> '.$value['name'].'</p>';
+                            echo '<p><strong>Price:</strong> '.$value['price'].'</p>';
+                            echo '</div>';
+                            echo '<button type="button" class="circle-btn btn-time" data-service-id="' . $value['service_id'] . '"></button>';
+                            echo '</div>';
+                        }
                     }
-                }
-                ?>
-            </div>
+                    ?>
+                </div>
 
-            <input type="hidden" name="master_id" id="master_id" />
-            <input type="hidden" name="service_id" id="service_id" />
+                <input type="hidden" name="master_id" id="master_id" />
+                <input type="hidden" name="service_id" id="service_id" />
 
-            <div class="text-center">
-                <button type="submit" class="btn btn-success" name="save">Confirm Appointment</button>
-            </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success" name="save">Confirm Appointment</button>
+                </div>
             </form>
         </div>
     </div>

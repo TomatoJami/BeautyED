@@ -33,7 +33,7 @@
                             <a class="nav-link" href="javascript:void(0)">Feedback</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)">Contacts</a>
+                            <a class="nav-link" href="#contacts">Contacts</a>
                         </li>
                         <?php
                         if (isset($_SESSION['sessionId'])) {
@@ -61,9 +61,7 @@
                 </div>
             </div>
         </nav>
-        <!-- Navbar -->
 
-        <!-- Background image -->
         <div class="p-5 text-center bg-image text-white"
             style="
                 background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
@@ -130,44 +128,6 @@
                 </div>
             <?php } ?>
         </div>
-        
-        <!-- <div class="d-flex justify-content-between">
-            <div class="dropdown">
-                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Hairdressing services
-                </button>
-                <div class="dropdown-menu">
-                    <span class="dropdown-item-text">Haircut 25.00</span>
-                    <span class="dropdown-item-text">Hair lightening 60.00</span>
-                    <span class="dropdown-item-text">Laying 15.00</span>
-                    <span class="dropdown-item-text">Coloring 70.00</span>
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Manicure
-                </button>
-                <div class="dropdown-menu">
-                    <span class="dropdown-item-text">Classic manicure 20.00</span>
-                    <span class="dropdown-item-text">Gel polish 30.00</span>
-                    <span class="dropdown-item-text">Nail extensions 50.00</span>
-                    <span class="dropdown-item-text">SPA manicure 40.00</span>
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Eyebrows and eyelashes
-                </button>
-                <div class="dropdown-menu">
-                    <span class="dropdown-item-text">Eyebrow shaping 15.00</span>
-                    <span class="dropdown-item-text">Eyelash extensions 50.00</span>
-                    <span class="dropdown-item-text">Brow tinting 20.00</span>
-                    <span class="dropdown-item-text">Lash lift 30.00</span>
-                </div>
-            </div>
-        </div> -->
     </section>
 
     <section class="container container-team text-center my-5">
@@ -200,7 +160,6 @@
                 </div>
             </div>
 
-            <!-- Кнопки навигации -->
             <button class="carousel-control-prev" type="button" data-bs-target="#teamCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             </button>
@@ -210,7 +169,7 @@
         </div>
     </section>
 
-    <footer class="text-center text-lg-start text-white bg-dark position-relative">
+    <footer id="contacts" class="text-center text-lg-start text-white bg-dark position-relative">
         <div class="container p-3 pb-0">
             <section class="">
                 <div class="row">

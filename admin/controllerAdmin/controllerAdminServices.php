@@ -25,7 +25,7 @@ class controllerAdminServices {
 
     public static function serviceDeleteResult($id) {
         $test = modelAdminServices::getServiceDelete($id);
-        include_once('viewAdmin/ServiceDeleteForm.php');
+        include_once('viewAdmin/serviceDeleteForm.php');
     }
 
     public static function serviceAddForm() {
@@ -37,5 +37,6 @@ class controllerAdminServices {
         $test = modelAdminServices::getServiceAdd();
         include_once ('viewAdmin/serviceAddForm.php');
     }
+    
 }
 ?>

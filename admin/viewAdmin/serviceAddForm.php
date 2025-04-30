@@ -3,7 +3,7 @@
 <div class="container" style="min-height:400px;">
     <div class="col-md-11">
 
-    <h2>Services Add </h2>
+    <h2>Service Add </h2>
     <?php
     if (isset($test)) {
         if ($test == true) {

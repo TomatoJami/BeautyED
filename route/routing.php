@@ -3,6 +3,7 @@
     $num = substr_count($host, '/');
     $path = explode('/', $host)[$num];
     $path = str_replace('.php', '', $path);
+    $logIn = modelLogin::userAuthentication();
 
     if ($path == '' OR $path == 'index' OR $path == 'index.php') {
         $response = Controller::StartSite();
@@ -21,19 +22,35 @@
     }
 
     elseif($path == 'account.php' OR $path == 'account') {
-        $response = Controller::accountAction();
+        if ($logIn == true) {
+            $response = Controller::accountAction();
+        } else {
+            $response = Controller::loginAction();
+        }
     }
 
     elseif($path == 'accountEditForm.php' OR $path == 'accountEditForm') {
-        $response = Controller::accountEditForm();
+        if ($logIn == true) {
+            $response = Controller::accountEditForm();
+        } else {
+            $response = Controller::loginAction();
+        }
     }
 
     elseif($path == 'accountDeleteForm.php' OR $path == 'accountDeleteForm') {
-        $response = Controller::accountDeleteForm();
+        if ($logIn == true) {
+            $response = Controller::accountDeleteForm();
+        } else {
+            $response = Controller::loginAction();
+        }
     }
 
     elseif($path == 'appointment.php' OR $path == 'appointment') {
-        $response = Controller::appointmentForm();
+        if ($logIn == true) {
+            $response = Controller::appointmentForm();
+        } else {
+            $response = Controller::loginAction();
+        }
     }
     
         elseif($path == 'appointmentSuccess.php' OR $path == 'appointmentSuccess') {

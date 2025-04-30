@@ -4,7 +4,7 @@
 
 <div class="container" style="min-height:400px;">
     <div style="margin:20px;">
-        <a class="btn btn-primary" href="newsAdd" role="button">Add appointment</a>
+        <a class="btn btn-primary" href="appointmentAdd" role="button">Add appointment</a>
     </div>
     <div class="col-md-11">
         <table class="table table-bordered table-responsive">
@@ -24,8 +24,8 @@
             echo '<b>Master: </b><i>'.$row['mastername'].'</i><br>';
             echo '<b>Date: </b><i>'.$row['dateTime'].'</i></td>';
             echo '<td>
-                    <a href="newsEdit?id='.$row['id'].'" class="btn btn-sm btn-primary">Edit</a> 
-                    <a href="newsDel?id='.$row['id'].'" class="btn btn-sm btn-danger">Delete</a>
+                    <a href="appointmentEdit?id='.$row['id'].'" class="btn btn-sm btn-primary">Edit</a> 
+                    <a href="appointmentDelete?id='.$row['id'].'" class="btn btn-sm btn-danger">Delete</a>
                 </td>';
             echo '</tr>';
         }

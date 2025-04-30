@@ -2,7 +2,7 @@
 
 <div class='content' style="min-height:400px;">
 <div class='col-md-11'>
-    <h2>Services Delete </h2>
+    <h2>Service Delete </h2>
 <?php
     if(isset($test)) {
         if($test==true) {

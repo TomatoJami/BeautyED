@@ -4,6 +4,7 @@
     $num = substr_count($host, '/');
     $path = explode('/', $host)[$num];
     $path = str_replace('.php', '', $path);
+    // $logIn = modelLogin::userAuthentication();
 
     if ($path == '' OR $path == 'index' OR $path == 'index.php') {
         $response = controllerAdmin::adminPanel();
@@ -29,7 +30,7 @@
             $response = controllerAdminServices::serviceDeleteForm($_GET['id']);
         }
 
-            elseif($path == 'serviceDeleteResult.php' OR $path == 'serviceDeleteResult') {
+            elseif($path == 'serviceDeleteResult.php' OR $path == 'serviceDeleteResult' && isset($_GET['id'])) {
                 $response = controllerAdminServices::serviceDeleteResult($_GET['id']);
             }
 
@@ -40,14 +41,62 @@
             elseif($path == 'serviceAddResult.php' OR $path == 'serviceAddResult') {
                 $response = controllerAdminServices::serviceAddResult();
             }
-
+        
     elseif($path == 'mastersList.php' OR $path == 'mastersList') {
         $response = controllerAdminMasters::mastersList();
     }
 
+        elseif($path == 'masterEdit.php' OR $path == 'masterEdit' && isset($_GET['id'])) {
+            $response = controllerAdminMasters::masterEditForm($_GET['id']);
+        }
+
+            elseif($path == 'masterEditResult.php' OR $path == 'masterEditResult' && isset($_GET['id'])) {
+                $response = controllerAdminMasters::masterEditResult($_GET['id']);
+            }
+
+        elseif($path == 'masterDelete.php' OR $path == 'masterDelete' && isset($_GET['id'])) {
+            $response = controllerAdminMasters::masterDeleteForm($_GET['id']);
+        }
+
+            elseif($path == 'masterDeleteResult.php' OR $path == 'masterDeleteResult' && isset($_GET['id'])) {
+                $response = controllerAdminMasters::masterDeleteResult($_GET['id']);
+            }
+
+        elseif($path == 'masterAdd.php' OR $path == 'masterAdd') {
+            $response = controllerAdminMasters::masterAddForm();
+        }
+
+            elseif($path == 'masterAddResult.php' OR $path == 'masterAddResult') {
+                $response = controllerAdminMasters::masterAddResult();
+            }
+
     elseif($path == 'appointmentsList.php' OR $path == 'appointmentsList') {
         $response = controllerAdminAppointments::appointmentsList();
     }
+
+        elseif($path == 'appointmentEdit.php' OR $path == 'appointmentEdit' && isset($_GET['id'])) {
+            $response = controllerAdminAppointments::appointmentEditForm($_GET['id']);
+        }
+
+            elseif($path == 'appointmentEditResult.php' OR $path == 'appointmentEditResult' && isset($_GET['id'])) {
+                $response = controllerAdminAppointments::appointmentEditResult($_GET['id']);
+            }
+
+        elseif($path == 'appointmentDelete.php' OR $path == 'appointmentDelete' && isset($_GET['id'])) {
+            $response = controllerAdminAppointments::appointmentDeleteForm($_GET['id']);
+        }
+
+            elseif($path == 'appointmentDeleteResult.php' OR $path == 'appointmentDeleteResult' && isset($_GET['id'])) {
+                $response = controllerAdminAppointments::appointmentDeleteResult($_GET['id']);
+            }   
+
+        elseif($path == 'appointmentAdd.php' OR $path == 'appointmentAdd') {
+            $response = controllerAdminAppointments::appointmentAddForm();
+        }
+
+            elseif($path == 'appointmentAddResult.php' OR $path == 'appointmentAddResult') {
+                $response = controllerAdminAppointments::appointmentAddResult();
+            }
 
     else {
         $response = controllerAdmin::error404();
