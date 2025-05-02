@@ -1,0 +1,12 @@
+.container-team {
+    margin-top: 200px !important;
+}
+
+#teamCarousel {
+    max-width: 40%;
+    margin: 0 auto;
+}
+
+html {
+    scroll-behavior: smooth;
+}
