@@ -12,6 +12,14 @@ class modelRegister {
                 $password = password_hash($PASS, PASSWORD_DEFAULT);
 
                 $db = new Database();
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    return false;
+                }
+
+                if (!self::isValidPhone($phone)) {
+                    return false;
+                }
+
                 $checkEmail = $db->getOne("SELECT * FROM `users` WHERE `email` = '$email'");
 
                 if ($checkEmail) {
@@ -29,5 +37,10 @@ class modelRegister {
             }
         }
         return $test;
+    }
+
+    private static function isValidPhone($phone) {
+        $cleanPhone = preg_replace('/[\s\-]/', '', $phone);
+        return preg_match('/^\+?\d{7,15}$/', $cleanPhone);
     }
 }

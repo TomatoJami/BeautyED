@@ -23,12 +23,20 @@
         <form method="POST" action="serviceDeleteResult?id=<?php echo $id; ?>" enctype="multipart/form-data">
             <table class="table table-bordered">
                 <tr>
-                    <td>Service name</td>
-                    <td><input type="text" name="name" class="form-control" readonly required value="<?php echo $detail['name']; ?>"></td>
+                    <td>Service name in english</td>
+                    <td><input type="text" name="eng_name" class="form-control" readonly required value="<?php echo $detail['eng_name']; ?>"></td>
                 </tr>
                 <tr>
-                    <td>Service description</td>
-                    <td><textarea rows="5" name="description" class="form-control" readonly required ><?php echo $detail['description']; ?></textarea></td>
+                    <td>Service name in russian</td>
+                    <td><input type="text" name="rus_name" class="form-control" readonly required value="<?php echo $detail['rus_name']; ?>"></td>
+                </tr>
+                <tr>
+                    <td>Service description in english</td>
+                    <td><textarea rows="5" name="eng_description" class="form-control" readonly required ><?php echo $detail['eng_description']; ?></textarea></td>
+                </tr>
+                <tr>
+                    <td>Service description in russian</td>
+                    <td><textarea rows="5" name="rus_description" class="form-control" readonly required ><?php echo $detail['rus_description']; ?></textarea></td>
                 </tr>
                 <tr>
                     <td>Service price</td>
@@ -42,7 +50,7 @@
                                 foreach($arr as $row) {
                                     echo '<option value="'.$row['id'].'"';
                                         if($row['id']==$detail['service_type_id']) echo 'selected';
-                                    echo '>'.$row['type'].'</option>';
+                                    echo '>'.$row['eng_type'].'</option>';
                                 }
                             ?>
                         </select>

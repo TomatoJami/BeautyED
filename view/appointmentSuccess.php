@@ -36,8 +36,8 @@
 <body>
 
   <div class="success-box">
-    <div class="success-message">Appointment added!</div>
-    <a class="btn-main-menu" href="./">Main menu</a>
+    <div class="success-message"><?= $t['appointmentAdd'] ?></div>
+    <a class="btn-main-menu" href="./"><?= $t['mainmenu'] ?></a>
   </div>
 
 </body>

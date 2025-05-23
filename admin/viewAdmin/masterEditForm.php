@@ -23,8 +23,12 @@
         <form method="POST" action="masterEditResult?id=<?php echo $id; ?>" enctype="multipart/form-data">
             <table class="table table-bordered">
                 <tr>
-                    <td>Master name</td>
-                    <td><input type="text" name="name" class="form-control" required value="<?php echo $detail['name']; ?>"></td>
+                    <td>Master name in english</td>
+                    <td><input type="text" name="eng_name" class="form-control" required value="<?php echo $detail['eng_name']; ?>"></td>
+                </tr>
+                <tr>
+                    <td>Master name in russian</td>
+                    <td><input type="text" name="rus_name" class="form-control" required value="<?php echo $detail['rus_name']; ?>"></td>
                 </tr>
                     <td colspan="2">
                         <button type="submit" class="btn btn-primary" name="save">

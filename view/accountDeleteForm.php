@@ -9,16 +9,16 @@
 </head>
 <body>
     <div class="d-md-flex ms-3">
-        <a href="account.php"><img style="width: 40px; height: 40px; object-fit: contain;" src="images/back.png" alt=""></a>
+        <a href="account"><img style="width: 40px; height: 40px; object-fit: contain;" src="images/back.png" alt=""></a>
     </div>
     <div class="container-sm p-5 bg-white rounded-3 container-account" style="width: 50%;">
-        <h1 class="text-center">Account delete</h1>
+        <h1 class="text-center"><?= $t['accountDelete'] ?></h1>
 
         <form method="POST" action="">
             <input type="text" name="name" class="form-control mb-3" readonly required value="<?php echo isset($_SESSION['name']) ? $_SESSION['name'] : ''; ?>">
             <input type="text" name="email" class="form-control mb-3" readonly required value="<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>">
             <input type="text" name="phone" class="form-control mb-3" readonly required value="<?php echo isset($_SESSION['phone']) ? $_SESSION['phone'] : ''; ?>">
-            <button type="submit" class="btn btn-danger" name="save">Delete</button>
+            <button type="submit" class="btn btn-danger" name="save"><?= $t['delete'] ?></button>
         </form>
 
     </div>
@@ -32,26 +32,25 @@
                         BeautyED
                         </h6>
                         <p>
-                            A leading premium beauty salon
-                            right from the heart of Paris!
+                            <?= $t['content'] ?>
                         </p>
-                        <a href="/BeautyEd/" style="color: white;">Website</a>
+                        <a href="" style="color: white;"><?= $t['website'] ?></a>
                     </div>
 
                     <hr class="w-100 clearfix d-md-none" />
 
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
                         <div class="d-flex justify-content-center align-items-center mb-4">
-                            <h6 class="text-uppercase font-weight-bold">NARVA</h6>
+                            <h6 class="text-uppercase font-weight-bold"><?= $t['narva'] ?></h6>
                         </div>
                     <div class="row">
                         <div class="col-6">
-                            <p><i class="fas fa-home mr-3"></i> Astri Keskus Tallinna mnt 41, Narva 3. korrus</p>
+                            <p><i class="fas fa-home mr-3"></i> <?= $t['adress'] ?></p>
                             <p><i class="fas fa-phone mr-3"></i> +372 6555272</p>
                         </div>
                         <div class="col-6">
                             <p><i class="fas fa-envelope mr-3"></i> narva@beautyed.ee</p>
-                            <p><i class="fas fa-print mr-3"></i> LAHTIOLEKUAJAD: E-L: 10:00 — 20:00 P: 10:00 — 18:00</p>
+                            <p><i class="fas fa-print mr-3"></i>  <?= $t['opening_hours'] ?></p>
                         </div>
                     </div>
                 </div>

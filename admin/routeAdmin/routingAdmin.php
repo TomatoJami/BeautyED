@@ -1,10 +1,15 @@
 <?php
+
+    if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+        header('Location: /BeautyED/');
+        exit();
+    }
+
     $host = explode('?', $_SERVER['REQUEST_URI'])[0];
     $host = str_replace('/BeautyED', '', $host);
     $num = substr_count($host, '/');
     $path = explode('/', $host)[$num];
     $path = str_replace('.php', '', $path);
-    // $logIn = modelLogin::userAuthentication();
 
     if ($path == '' OR $path == 'index' OR $path == 'index.php') {
         $response = controllerAdmin::adminPanel();

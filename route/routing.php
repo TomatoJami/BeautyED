@@ -5,6 +5,7 @@
     $path = str_replace('.php', '', $path);
     $logIn = modelLogin::userAuthentication();
 
+    
     if ($path == '' OR $path == 'index' OR $path == 'index.php') {
         $response = Controller::StartSite();
     }
@@ -59,6 +60,10 @@
     
     elseif($path == 'getAvaiableTimes.php' OR $path == 'getAvaiableTimes') {
         $response = Controller::avaiableTimes();
+    }
+
+    elseif($path == 'feedback.php' OR $path == 'feedback') {
+        $response = Controller::feedbackForm();
     }
 
     else {

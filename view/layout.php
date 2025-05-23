@@ -30,16 +30,16 @@
                     </ul>
                     <ul class="navbar-nav me-auto d-flex align-items-center">
                         <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)">Feedback</a>
+                            <a class="nav-link" href="feedback"><?= $t['feedback'] ?></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#contacts">Contacts</a>
+                            <a class="nav-link" href="#contacts"><?= $t['contacts'] ?></a>
                         </li>
                         <?php
                         if (isset($_SESSION['sessionId'])) {
                             if ($_SESSION['role'] == 'admin') {
                                 echo '<li class="nav-item">';
-                                echo    '<a class="nav-link" href="admin/">Admin panel</a>';
+                                echo    '<a class="nav-link" href="admin/">' . $t['adminpanel'] . '</a>';
                                 echo '</li>';
                             }
                         }
@@ -48,13 +48,31 @@
                     <ul class="navbar-nav d-flex align-items-center">
                         <?php
                         if (isset($_SESSION['sessionId'])) {
-                            echo '<a class="me-2" href="account.php"><img style="width: 40px; height: 40px; border-radius: 50%;" src="images/avatar.jpg" class="profile-image"></a>';
+                            if ($lang == 'en') {
+                                echo '<a href="?lang=rus" class="me-2">';
+                                echo    '<img src="images/russianflag.jpg" alt="Russian" style="width:30px; height:20px;" />';
+                                echo '</a>';
+                            } else {
+                                echo '<a href="?lang=en" class="me-2">';
+                                echo    '<img src="images/americanflag.jpg" alt="English" style="width:30px; height:20px;" />';
+                                echo '</a>';
+                            }                           
+                            echo '<a class="me-2" href="account"><img style="width: 40px; height: 40px; border-radius: 50%;" src="images/avatar.jpg" class="profile-image"></a>';
                             echo '<form action="logout" method="POST" style="display: inline;">
-                                    <button type="submit" class="btn btn-outline-dark me-2">Logout</button>
+                                    <button type="submit" class="btn btn-outline-dark me-2">' . $t['logout'] . '</button>
                                  </form>';
                         } else {
-                            echo '<a href="login.php" class="btn btn-outline-dark me-2">Login</a>';
-                            echo '<a href="register.php" class="btn btn btn-dark me-2">Register</a>';
+                            if ($lang == 'en') {
+                                echo '<a href="?lang=rus" class="me-2">';
+                                echo    '<img src="images/russianflag.jpg" alt="Русский" style="width:30px; height:20px;" />';
+                                echo '</a>';
+                            } else {
+                                echo '<a href="?lang=en" class="me-2">';
+                                echo    '<img src="images/americanflag.jpg" alt="English" style="width:30px; height:20px;" />';
+                                echo '</a>';
+                            }                            
+                            echo '<a href="login" class="btn btn-outline-dark me-2">' . $t['login'] . '</a>';
+                            echo '<a href="register" class="btn btn btn-dark me-2">' . $t['register'] . '</a>';
                         }
                         ?>
                     </ul>
@@ -72,26 +90,20 @@
             <div class="d-flex justify-content-center align-items-center h-100">
                 <div>
                     <h1 class="mb-3">BeautyED</h1>
-                    <h3 class="mb-3">Narva</h3>
-                    <h4 class="mb-3">A premium flagship beauty salon from the heart of Paris!</h4>
-                    <?php
-                    if (isset($_SESSION['sessionId'])) {
-                        echo '<a class="btn btn-outline-light btn-lg" href="appointment.php" role="button">Book your time</a>';
-                    } else {
-                        echo '<a class="btn btn-outline-light btn-lg" href="login.php" role="button">Book your time</a>';
-                    }
-                    ?>
+                    <h3 class="mb-3"><?= $t['narva'] ?></h3>
+                    <h4 class="mb-3"><?= $t['slogan'] ?></h4>
+                    
+                    <a class="btn btn-outline-light btn-lg" href="appointment" role="button"><?= $t['book'] ?></a>
+
                 </div>
             </div>
         </div>
     </header>
 
     <section class="container text-center my-5">
-        <h2 class="mb-4">OUR MISSION:</h2>
+        <h2 class="mb-4"><?= $t['our_mission'] ?></h2>
         <p class="lead">
-        To emphasize, enhance and support the style of each client,
-        taking into account their needs and wishes, using fundamental
-        knowledge and modern technologies in the beauty industry.
+            <?= $t['mission_text'] ?>
         </p>
         <div class="row mt-4">
             <div class="col-md-6">
@@ -104,7 +116,7 @@
     </section>
 
     <section class="container mt-5">
-        <h2 class="mb-3 text-center">SALON SERVICES:</h2>
+        <h2 class="mb-3 text-center"><?= $t['salon'] ?></h2>
         
         <div class="d-flex justify-content-between">
             <?php foreach ($arrTypes as $type) { ?>
@@ -131,7 +143,7 @@
     </section>
 
     <section class="container container-team text-center my-5">
-        <h2>OUR TEAM:</h2>
+        <h2><?= $t['team'] ?></h2>
         <div id="teamCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -178,26 +190,25 @@
                         BeautyED
                         </h6>
                         <p>
-                            A leading premium beauty salon
-                            right from the heart of Paris!
+                            <?= $t['content'] ?>
                         </p>
-                        <a href="" style="color: white;">Website</a>
+                        <a href="" style="color: white;"><?= $t['website'] ?></a>
                     </div>
 
                     <hr class="w-100 clearfix d-md-none" />
 
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
                         <div class="d-flex justify-content-center align-items-center mb-4">
-                            <h6 class="text-uppercase font-weight-bold">NARVA</h6>
+                            <h6 class="text-uppercase font-weight-bold"><?= $t['narva'] ?></h6>
                         </div>
                     <div class="row">
                         <div class="col-6">
-                            <p><i class="fas fa-home mr-3"></i> Astri Keskus Tallinna mnt 41, Narva 3. korrus</p>
+                            <p><i class="fas fa-home mr-3"></i> <?= $t['adress'] ?></p>
                             <p><i class="fas fa-phone mr-3"></i> +372 6555272</p>
                         </div>
                         <div class="col-6">
                             <p><i class="fas fa-envelope mr-3"></i> narva@beautyed.ee</p>
-                            <p><i class="fas fa-print mr-3"></i> LAHTIOLEKUAJAD: E-L: 10:00 — 20:00 P: 10:00 — 18:00</p>
+                            <p><i class="fas fa-print mr-3"></i>  <?= $t['opening_hours'] ?></p>
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
 <?php
 ob_start();
 ?>
-<h1>Error 404</h1>
+<h1><?= $t['error404'] ?></h1>

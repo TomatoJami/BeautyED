@@ -27,12 +27,20 @@
         <form method="POST" action="serviceAddResult" enctype="multipart/form-data">
             <table class="table table-bordered">
                 <tr>
-                    <td>Service name</td>
-                    <td><input type="text" name="name" class="form-control" required></td>
+                    <td>Service name in english</td>
+                    <td><input type="text" name="eng_name" class="form-control" required></td>
                 </tr>
                 <tr>
-                    <td>Service description</td>
-                    <td><textarea rows="5" name="description" class="form-control" required></textarea></td>
+                    <td>Service name in russian</td>
+                    <td><input type="text" name="rus_name" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <td>Service description in english</td>
+                    <td><textarea rows="5" name="eng_description" class="form-control" required></textarea></td>
+                </tr>
+                <tr>
+                    <td>Service description in russian</td>
+                    <td><textarea rows="5" name="rus_description" class="form-control" required></textarea></td>
                 </tr>
                 <tr>
                     <td>Service price</td>
@@ -41,10 +49,10 @@
                 <tr>
                     <td>Service type</td>
                     <td>
-                        <select name="idServiceType" class="form-control" >
+                        <select name="idServiceType" class="form-control" required>
                             <?php
                                 foreach($arr as $row) {
-                                    echo '<option value="'.$row['id'].'">'.$row['type'].'</option>';
+                                    echo '<option value="'.$row['id'].'">'.$row['eng_type'].'</option>';
                                 }
                             ?>
                         </select>

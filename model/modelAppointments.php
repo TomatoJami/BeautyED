@@ -1,9 +1,17 @@
 <?php
 
 class modelAppointments{
-    public static function getAllAppointmentsForUser() {
+    public static function getAllEngAppointmentsForUser() {
         $id = $_SESSION['userId'];
-        $query = "SELECT appointments.id AS appointment_id, services.id as service_id, masters.id as master_id, services.name AS service_name, masters.name AS master_name, appointments.dateTime FROM appointments LEFT JOIN services ON appointments.service_id = services.id LEFT JOIN masters ON appointments.master_id = masters.id WHERE appointments.user_id = $id ORDER BY appointments.dateTime DESC;" ;
+        $query = "SELECT appointments.id AS appointment_id, services.id as service_id, masters.id as master_id, services.eng_name AS service_name, masters.eng_name AS master_name, appointments.dateTime FROM appointments LEFT JOIN services ON appointments.service_id = services.id LEFT JOIN masters ON appointments.master_id = masters.id WHERE appointments.user_id = $id ORDER BY appointments.dateTime DESC;" ;
+        $db = new Database();
+        $arr = $db->getAll($query);
+        return $arr;
+    }
+
+    public static function getAllRusAppointmentsForUser() {
+        $id = $_SESSION['userId'];
+        $query = "SELECT appointments.id AS appointment_id, services.id as service_id, masters.id as master_id, services.rus_name AS service_name, masters.rus_name AS master_name, appointments.dateTime FROM appointments LEFT JOIN services ON appointments.service_id = services.id LEFT JOIN masters ON appointments.master_id = masters.id WHERE appointments.user_id = $id ORDER BY appointments.dateTime DESC;" ;
         $db = new Database();
         $arr = $db->getAll($query);
         return $arr;
@@ -93,7 +101,7 @@ class modelAppointments{
     
                 if ($db->executeRun($sql)) {
                     $test = true;
-                    header("Location: appointmentSuccess.php");
+                    header("Location: appointmentSuccess");
                     exit();
                 } else {
                     echo "Error";

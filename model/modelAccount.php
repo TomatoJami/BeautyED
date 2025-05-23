@@ -2,6 +2,7 @@
 
 class modelAccount{
     public static function editAccount() {
+        global $t;
         $result = false;
         $errorMessage = '';
     
@@ -10,6 +11,16 @@ class modelAccount{
                 $name = $_POST['name'];
                 $email = $_POST['email'];
                 $phone = $_POST['phone'];
+
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $errorMessage = $t['invalidEmail'];
+                    return ['result' => $result, 'errorMessage' => $errorMessage];
+                }
+
+                if (!self::isValidPhone($phone)) {
+                    $errorMessage = $t['invalidPhone'];
+                    return ['result' => $result, 'errorMessage' => $errorMessage];
+                }
                 
                 $userId = $_SESSION['userId'];
                 $db = new Database();
@@ -58,6 +69,11 @@ class modelAccount{
         }
         
         return $result;
+    }
+
+    private static function isValidPhone($phone) {
+        $cleanPhone = preg_replace('/[\s\-]/', '', $phone);
+        return preg_match('/^\+?\d{7,15}$/', $cleanPhone);
     }
 
 }

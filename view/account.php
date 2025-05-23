@@ -15,29 +15,29 @@
         
         <div class="container-sm p-5 bg-white rounded-3 container-account" style="width: 50%;">
             <?php
-            echo '<h1 class="text-center">Hello, '.$_SESSION["name"].'</h1>';
-            echo '<p class="text-center">Mail: '.$_SESSION["email"].'</p>';
-            echo '<p class="text-center">Phone: '.$_SESSION["phone"].'</p>';
+            echo '<h1 class="text-center">'.$t['greetings'] .' '. $_SESSION['name'] .'</h1>';
+            echo '<p class="text-center">'.$t['mail'].': '. $_SESSION['email'] .'</p>';
+            echo '<p class="text-center">'.$t['phone'].': '. $_SESSION['phone'] .'</p>';
             ?>
             <div class="d-flex justify-content-center align-items-center mt-4">
-                <a href="accountEditForm.php" class="btn btn-warning text-white me-2">Change data</a>
-                <a href="accountDeleteForm.php" class="btn btn-danger me-2">Delete account</a>
+                <a href="accountEditForm" class="btn btn-warning text-white me-2"><?= $t['changeData'] ?></a>
+                <a href="accountDeleteForm" class="btn btn-danger me-2"><?= $t['deleteData'] ?></a>
             </div>
-            <h3 class="mt-4 text-center">Your appointments</h3>
+            <h3 class="mt-4 text-center"><?= $t['appointmentsTitle'] ?></h3>
             <?php 
             if (empty($arr)) {
-                echo '<p class="text-center">No appointments found</p>';
+                echo '<p class="text-center">'.$t['noAppointments'].'</p>';
             } else {
                 foreach($arr as $value) {
                     echo '<div class="appointment-item d-flex justify-content-between align-items-center mb-3   ">';
                     echo '<div class="appointment-details">';
-                    echo '<p><strong>Service:</strong> '.$value['service_name'].'</p>';
-                    echo '<p><strong>Master:</strong> '.$value['master_name'].'</p>';
-                    echo '<p><strong>Date & Time:</strong> '.$value['dateTime'].'</p>';
+                    echo '<p><strong>'.$t['service'].':</strong> '.$value['service_name'].'</p>';
+                    echo '<p><strong>'.$t['master'].':</strong> '.$value['master_name'].'</p>';
+                    echo '<p><strong>'.$t['datetime'].':</strong> '.$value['dateTime'].'</p>';
                     echo '</div>';
                     echo '<form method="POST" action="account.php">';
                     echo '<input type="hidden" name="appointment_id" value="' . $value['appointment_id'] . '">';
-                    echo '<button type="submit" class="btn btn-danger" name="delete_appointment">Delete</button>';
+                    echo '<button type="submit" class="btn btn-danger" name="delete_appointment">'.$t['delete'].'</button>';
                     echo '</form>';
                     echo '</div>';
                 }
@@ -51,33 +51,33 @@
                     <div class="row">
                         <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
                             <h6 class="mb-4 font-weight-bold">
-                                BeautyED
+                            BeautyED
                             </h6>
                             <p>
-                                A leading premium beauty salon
-                                right from the heart of Paris!
+                                <?= $t['content'] ?>
                             </p>
-                            <a href="/BeautyEd/" style="color: white;">Website</a>
+                            <a href="" style="color: white;"><?= $t['website'] ?></a>
                         </div>
+
                         <hr class="w-100 clearfix d-md-none" />
+
                         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
                             <div class="d-flex justify-content-center align-items-center mb-4">
-                                <h6 class="text-uppercase font-weight-bold">NARVA</h6>
+                                <h6 class="text-uppercase font-weight-bold"><?= $t['narva'] ?></h6>
                             </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <p><i class="fas fa-home mr-3"></i> Astri Keskus Tallinna mnt 41, Narva 3. korrus</p>
-                                    <p><i class="fas fa-phone mr-3"></i> +372 6555272</p>
-                                </div>
-                                <div class="col-6">
-                                    <p><i class="fas fa-envelope mr-3"></i> narva@beautyed.ee</p>
-                                    <p><i class="fas fa-print mr-3"></i> LAHTIOLEKUAJAD: E-L: 10:00 — 20:00 P: 10:00 — 18:00</p>
-                                </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <p><i class="fas fa-home mr-3"></i> <?= $t['adress'] ?></p>
+                                <p><i class="fas fa-phone mr-3"></i> +372 6555272</p>
+                            </div>
+                            <div class="col-6">
+                                <p><i class="fas fa-envelope mr-3"></i> narva@beautyed.ee</p>
+                                <p><i class="fas fa-print mr-3"></i>  <?= $t['opening_hours'] ?></p>
                             </div>
                         </div>
                     </div>
-                </section> 
-            </div>
+                </div>
+            </section> 
         </footer>
     </div>
 

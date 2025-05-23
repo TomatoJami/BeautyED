@@ -1,9 +1,7 @@
 <?php
 
 class controllerAdmin {
-
     public static function adminPanel() {
-
         include_once('viewAdmin/adminPanel.php');
     }
 
@@ -15,8 +13,6 @@ class controllerAdmin {
         modelAdmin::userLogout();
         include_once('/BeautyED');
     }
-
-    
 
 }
 ?>

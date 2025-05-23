@@ -26,8 +26,12 @@
         <form method="POST" action="masterAddResult" enctype="multipart/form-data">
             <table class="table table-bordered">
                 <tr>
-                    <td>Master name</td>
-                    <td><input type="text" name="name" class="form-control" required></td>
+                    <td>Master name in english</td>
+                    <td><input type="text" name="eng_name" class="form-control" required></td>
+                </tr>
+                <tr>
+                    <td>Master name in russian</td>
+                    <td><input type="text" name="rus_name" class="form-control" required></td>
                 </tr>
                 <tr>
                     <td colspan="2">

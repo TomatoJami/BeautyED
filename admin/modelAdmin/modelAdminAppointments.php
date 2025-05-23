@@ -2,7 +2,7 @@
 
 class modelAdminAppointments{
     public static function getAppointmentsList() {
-        $query = "SELECT appointments.id as id, users.name as username, services.name as servicename, masters.name as mastername, dateTime FROM appointments JOIN users ON appointments.user_id = users.id JOIN services ON appointments.service_id = services.id JOIN masters ON appointments.master_id = masters.id ORDER BY `appointments`.`id` DESC";
+        $query = "SELECT appointments.id as id, users.name as username, services.eng_name as servicename, masters.eng_name as mastername, dateTime FROM appointments JOIN users ON appointments.user_id = users.id JOIN services ON appointments.service_id = services.id JOIN masters ON appointments.master_id = masters.id ORDER BY `appointments`.`id` DESC";
         $db = new Database();
         $arr = $db->getAll($query);
         return $arr;
@@ -16,26 +16,21 @@ class modelAdminAppointments{
     }
 
     public static function getServicesList() {
-        $sql = "SELECT services.id as service_id, services.name as service FROM services ORDER BY services.name ASC";
+        $sql = "SELECT services.id as service_id, services.eng_name as service FROM services ORDER BY services.eng_name ASC";
         $db = new Database();
         $rows = $db->getAll($sql);
         return $rows;
     }
 
     public static function getMastersList() {
-        $sql = "SELECT masters.id as master_id, masters.name as master FROM masters ORDER BY masters.name ASC";
+        $sql = "SELECT masters.id as master_id, masters.eng_name as master FROM masters ORDER BY masters.eng_name ASC";
         $db = new Database();
         $rows = $db->getAll($sql);
         return $rows;
     }
 
     public static function getAppointmentsDetail($id) {
-        $query = " SELECT appointments.id as id, users.name as username, services.name as service_name, masters.name as master_name, appointments.dateTime as dateTime, appointments.user_id as user_id, appointments.service_id as service_id, appointments.master_id as master_id FROM appointments JOIN users ON users.id = appointments.user_id JOIN services ON services.id = appointments.service_id JOIN masters on masters.id = appointments.master_id WHERE appointments.id=".$id;
-        // SELECT appointments.id as id, users.name as username, services.name as service_name, masters.name as master_name, appointments.dateTime as dateTime FROM appointments
-        // JOIN users ON users.id = appointments.user_id
-        // JOIN services ON services.id = appointments.service_id
-        // JOIN masters on masters.id = appointments.master_id
-        // WHERE appointments.id = 10
+        $query = " SELECT appointments.id as id, users.name as username, services.eng_name as service_name, masters.eng_name as master_name, appointments.dateTime as dateTime, appointments.user_id as user_id, appointments.service_id as service_id, appointments.master_id as master_id FROM appointments JOIN users ON users.id = appointments.user_id JOIN services ON services.id = appointments.service_id JOIN masters on masters.id = appointments.master_id WHERE appointments.id=".$id;
         $db = new Database();
         $arr = $db->getOne($query);
         return $arr;

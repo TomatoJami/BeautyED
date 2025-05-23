@@ -55,7 +55,7 @@
 
           </div>
           <footer class="footer">
-            <p>&copy; 2019 Design Admin Dashboard<i class="fa fa-child"></i></p>
+            <p>&copy; 2025 Design Admin Dashboard<i class="fa fa-child"></i></p>
           </footer>
         </div>
     </body>
