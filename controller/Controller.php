@@ -82,6 +82,7 @@ class Controller {
 
     public static function accountEditForm() {
         global $t; 
+        $lang = $GLOBALS['lang'];
         $result = modelAccount::editAccount();
         if (isset($_POST['save'])) {
             if ($result['result']) {
@@ -95,6 +96,7 @@ class Controller {
 
     public static function accountDeleteForm() { 
         global $t; 
+        $lang = $GLOBALS['lang'];
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
             $result = modelAccount::deleteAccount();
         }
@@ -128,6 +130,7 @@ class Controller {
 
     public static function feedbackForm() {
         global $t; 
+        $lang = $GLOBALS['lang'];
         if (isset($_POST['save'])) {
             modelReviews::addReview();
             header("Location: " . $_SERVER['REQUEST_URI']);

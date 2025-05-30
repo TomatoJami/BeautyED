@@ -9,11 +9,78 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
-    <div class="back-button d-md-flex ms-3">
-        <a href="./"><img style="width: 40px; height: 40px;" src="images/back.png" alt=""></a>
-    </div>
+    <nav class="navbar navbar-expand-lg bg-body">
+            <div class="container-fluid">
+                <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mynavbar"
+                aria-controls="mynavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                >
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mynavbar">
+                    <ul class="navbar-nav me-auto d-flex align-items-center">
+                        <li class="nav-item">
+                            <h3><a class="text-black text-decoration-none" href="./">BeautyED</a></h3>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-auto d-flex align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="feedback"><?= $t['feedback'] ?></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contacts"><?= $t['contacts'] ?></a>
+                        </li>
+                        <?php
+                        if (isset($_SESSION['sessionId'])) {
+                            if ($_SESSION['role'] == 'admin') {
+                                echo '<li class="nav-item">';
+                                echo    '<a class="nav-link" href="admin/">' . $t['adminpanel'] . '</a>';
+                                echo '</li>';
+                            }
+                        }
+                        ?>
+                    </ul>
+                    <ul class="navbar-nav d-flex align-items-center">
+                        <?php
+                        if (isset($_SESSION['sessionId'])) {
+                            if ($lang == 'en') {
+                                echo '<a href="?lang=rus" class="me-2">';
+                                echo    '<img src="images/russianflag.jpg" alt="Russian" style="width:30px; height:20px;" />';
+                                echo '</a>';
+                            } else {
+                                echo '<a href="?lang=en" class="me-2">';
+                                echo    '<img src="images/americanflag.jpg" alt="English" style="width:30px; height:20px;" />';
+                                echo '</a>';
+                            }                           
+                            echo '<a class="me-2" href="account"><img style="width: 40px; height: 40px; border-radius: 50%;" src="images/avatar.jpg" class="profile-image"></a>';
+                            echo '<form action="logout" method="POST" style="display: inline;">
+                                    <button type="submit" class="btn btn-outline-dark me-2">' . $t['logout'] . '</button>
+                                 </form>';
+                        } else {
+                            if ($lang == 'en') {
+                                echo '<a href="?lang=rus" class="me-2">';
+                                echo    '<img src="images/russianflag.jpg" alt="Русский" style="width:30px; height:20px;" />';
+                                echo '</a>';
+                            } else {
+                                echo '<a href="?lang=en" class="me-2">';
+                                echo    '<img src="images/americanflag.jpg" alt="English" style="width:30px; height:20px;" />';
+                                echo '</a>';
+                            }                            
+                            echo '<a href="login" class="btn btn-outline-dark me-2 buttons-nav">' . $t['login'] . '</a>';
+                            echo '<a href="register" class="btn btn btn-dark me-2 buttons-nav">' . $t['register'] . '</a>';
+                        }
+                        ?>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     <div class="d-flex flex-column min-vh-100">
-        <div class="container-sm p-5 bg-white" style="width: 50%;">
+        <div class="appointment-container container-sm">
             <h1 class="text-center">BeautyED</h1>
             <form method="POST" action='' id="appointment-form">
                 <h3 class="mt-4 text-center"><?= $t['chooseSpecialist'] ?></h3>
@@ -36,8 +103,9 @@
 
                 <h3 class="mt-4 text-center"><?= $t['selectDateAndTime'] ?></h3>
                 
-                <input type="date" name="appointment_date" id="date-picker" class="form-control mb-3" style="width: 80%; margin: 0 auto" placeholder="<?= $t['selectDate'] ?>"/>
-                <select name="appointment_time" id="appointment_time" required class="form-control mb-3" style="width: 80%; margin: 0 auto;">
+                <input type="date" name="appointment_date" autocomplete="off" readonly id="date-picker" class="form-control mb-3" placeholder="<?= $t['selectDate'] ?>"/>
+
+                <select name="appointment_time" id="appointment_time" required class="form-control mb-3">
                     <option value=""><?= $t['selectTime'] ?></option>
                 </select>
 
@@ -63,7 +131,7 @@
                 <input type="hidden" name="master_id" id="master_id" />
                 <input type="hidden" name="service_id" id="service_id" />
 
-                <div class="text-center">
+                <div class="text-center mb-5">
                     <button type="submit" class="btn btn-success" name="save"><?= $t['confirmAppointment'] ?></button>
                 </div>
             </form>
@@ -106,6 +174,7 @@
     </footer>
     </script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="js/appointment.js"></script>
     <script>
         flatpickr("#date-picker", {

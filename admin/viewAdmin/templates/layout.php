@@ -9,7 +9,7 @@
             <script src="public/js/jquery.min.js"></script>
             <script src="public/js/bootstrap.min.js"></script>
             <script type="text/javascript" src="public/js/ajaxupload.3.5.js"></script>
-        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         <div class="container">
@@ -21,13 +21,14 @@
         <div class="header clearfix">
         <nav class="navbar navbar-default">
         <div class="container-fluid">
-
-                <?php 
+                        <div class="container-fluid">
+                                                        <?php 
                 echo '<ul class="nav nav-pills pull-right">
                 <li role="button">'.$_SESSION["name"].
                 '<a href="logout" style="display: inline;">Logout <i class="fa fa-sign-out"></i>
-                </a></li></ul>';
-
+                </a></li></ul>'; ?>
+                        </div>
+                <?php 
                 if(isset($_SESSION["role"]) && $_SESSION["role"]=="admin"){
 
                     echo '<h4><a href="../" target=_blank>WEB SITE </a>';

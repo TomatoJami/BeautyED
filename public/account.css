@@ -1,5 +1,10 @@
 .container-account {
     border: 2px solid black;
     border-radius: 5px;
-    flex: 1;
+
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
 }

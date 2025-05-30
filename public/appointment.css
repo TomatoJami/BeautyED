@@ -1,3 +1,33 @@
+.appointment-container {
+    width: 50%;
+    margin: auto;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .appointment-container {
+        width: 100%;
+        padding: 1.5rem 1rem;
+        border-radius: 0;
+    }
+
+    .appointment-item {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+
+    .appointment-item .appointment-details {
+        margin-bottom: 1rem;
+    }
+
+    .form-control {
+        width: 100% !important;
+        margin-bottom: 1rem;
+    }
+}
+
 .circle-btn {
     width: 15px;
     height: 15px;

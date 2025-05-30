@@ -3,24 +3,24 @@
   <head>
     <title>BeautyED</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href='./public/style.css' rel='stylesheet' type='text/css'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link href='public/style.css' rel='stylesheet' type='text/css'>
   </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg bg-body fixed-top">
             <div class="container-fluid">
                 <button
-                    data-mdb-collapse-init
-                    class="navbar-toggler"
-                    type="button"
-                    data-mdb-target="#navbarExample01"
-                    aria-controls="navbarExample01"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mynavbar"
+                aria-controls="mynavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
                 >
-                    <i class="fas fa-bars"></i>
+                <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="mynavbar">
                     <ul class="navbar-nav me-auto d-flex align-items-center">
@@ -71,8 +71,8 @@
                                 echo    '<img src="images/americanflag.jpg" alt="English" style="width:30px; height:20px;" />';
                                 echo '</a>';
                             }                            
-                            echo '<a href="login" class="btn btn-outline-dark me-2">' . $t['login'] . '</a>';
-                            echo '<a href="register" class="btn btn btn-dark me-2">' . $t['register'] . '</a>';
+                            echo '<a href="login" class="btn btn-outline-dark me-2 buttons-nav">' . $t['login'] . '</a>';
+                            echo '<a href="register" class="btn btn btn-dark me-2 buttons-nav">' . $t['register'] . '</a>';
                         }
                         ?>
                     </ul>
@@ -106,24 +106,25 @@
             <?= $t['mission_text'] ?>
         </p>
         <div class="row mt-4">
-            <div class="col-md-6">
+            <div class="col-md-6 img-woman">
                 <img src="images/woman1.jpg" class="img-fluid rounded" alt="Стильная девушка с кудрями">
             </div>
-            <div class="col-md-6">
+            
+            <div class="col-md-6 img-woman">
                 <img src="images/woman2.jpg" class="img-fluid rounded" alt="Девушка с короткой стрижкой">
             </div>
         </div>
     </section>
 
-    <section class="container mt-5">
-        <h2 class="mb-3 text-center"><?= $t['salon'] ?></h2>
-        
-        <div class="d-flex justify-content-between">
-            <?php foreach ($arrTypes as $type) { ?>
+<section class="container mt-5">
+    <h2 class="mb-3 text-center"><?= $t['salon'] ?></h2>
+    <div class="row justify-content-center">
+        <?php foreach ($arrTypes as $type) { ?>
+            <div class="col-auto mb-3">
                 <div class="dropdown">
-                    <?php
-                        echo '<button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">'.$type['type'].'</button>';
-                    ?>
+                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <?= $type['type'] ?>
+                    </button>
                     <ul class="dropdown-menu">
                         <?php 
                             $services = $arrServices[$type['id']] ?? [];
@@ -138,9 +139,11 @@
                         ?>
                     </ul>
                 </div>
-            <?php } ?>
-        </div>
-    </section>
+            </div>
+        <?php } ?>
+    </div>
+</section>
+
 
     <section class="container container-team text-center my-5">
         <h2><?= $t['team'] ?></h2>
